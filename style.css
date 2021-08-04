@@ -1,0 +1,52 @@
+body{
+    background-color: #002244;
+}
+main{
+    border-radius: 35px;
+    background-color:#A5ACAF;
+    border: 5px solid #69BE28;
+    height:600px;
+    width:600px; 
+    margin:0 auto;
+}
+#header-h1{
+    color:#002244;
+    border-bottom: 5px solid #69BE28;
+    text-align: center;
+}
+#sprite-div{
+    width: 600px;
+    height: 295px;
+    background-color: white;
+}
+#controller{
+    border-top:5px solid #69BE28;
+    width: 600px;
+    height: 100px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+button{
+    height: 100px;
+    width: 200px;
+    color:#A5ACAF;
+}
+#feed{
+    background-color: #002244;
+    border-radius: 0px 0px 0px 35px;
+}
+#sleep{
+    background-color:#002244;
+}
+#play{
+    background-color: #002244;
+    border-radius: 0px 0px 35px 0px;
+}
+.sprite{
+    height: 250px;
+    width: auto;
+}
+#dead{
+    transform: rotate(270deg);
+}
