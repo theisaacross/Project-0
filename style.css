@@ -16,8 +16,10 @@ main{
     min-height: 60px;
 }
 #sprite-div{
-    width: 600px;
-    height: 335px;
+    max-width: 600px;
+    min-height: 335px;
+    max-width: 600px;
+    max-height: 335px;
     background-color: white;
 }
 #controller{
@@ -44,7 +46,7 @@ button{
     background-color: #002244;
     border-radius: 0px 0px 35px 0px;
 }
-.sprite{
+#sprite{
     height: 250px;
     width: auto;
 }
@@ -59,3 +61,7 @@ button{
 #score h4{
     margin: 30px;
 }
+.night-time{
+    filter: brightness(50%);
+}
+

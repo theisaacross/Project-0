@@ -2,9 +2,10 @@ const hunger = document.querySelector('#hunger')
 const tiredness = document.querySelector('#tiredness')
 const boredom = document.querySelector('#boredom')
 const age = document.querySelector('#age')
-const mascot = document.querySelector('#header-h1')
+const mascot = document.querySelector('#sprite')
 const inputName = prompt("Rename the Seahawks Mascot")
 mascot.innerText = inputName
+const screen = document.querySelector('#sprite-div')
 
 const hungerButton = document.querySelector('#feed')
 const sleepButton = document.querySelector('#sleep')
@@ -25,38 +26,44 @@ class Tomagotchi{
     sleep(){
         this.tirednessLevel--
         tiredness.innerText = `Tiredness: ${this.tirednessLevel}/10`
+        screen.classList.toggle('night-time')
+        setTimeout(() => screen.classList.remove('night-time'),1000)
     }
     play(){
         this.boredomLevel--
         boredom.innerText = `Boredom: ${this.boredomLevel}/10`
     }
+    makeHungry(){
+        this.hungerLevel++
+        hunger.innerText = `Hunger: ${this.hungerLevel}/10`
+    }
+    makeSleepy(){
+        this.tirednessLevel++
+        tiredness.innerText = `Tiredness: ${this.tirednessLevel}/10`
+    }
+    getBored(){
+        this.boredomLevel++
+        boredom.innerText = `Boredom: ${this.boredomLevel}/10`
+    }
     ageSprite(){
         this.ageNum++
         age.innerText = `Age: ${this.ageNum}`
+        this.hungerLevel++
+        this.tirednessLevel++
+        this.boredomLevel++
     }
 }
-
 const blitz = new Tomagotchi(inputName)
 
 const feedClick = hungerButton.addEventListener('click', () => blitz.feed())
 const sleepClick = sleepButton.addEventListener('click', () => blitz.sleep())
 const playClick = playButton.addEventListener('click',  () => blitz.play())
+const timerId = setInterval(() => blitz.count(),1000);
 
-// setInterval(ageSprite, 5000)
-
+// blitz.start()
 
 
 //make the sprite move randomly or when you click a button
-//have the levels increase over a certain time period
-// maybe add a start game button/function 
-// turn off the lights 
-// can't go below 0 
-
-// function start(){
-//     // setInterval(() => blitz.ageSprite(), 5000)
-//     setInterval()
-//     setInterval()
-//     setInterval()
-//     setInterval()
-// }
-// start()
+// can't go above 10 and below 0
+// dead animation
+// get bigger by age
