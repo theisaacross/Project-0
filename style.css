@@ -50,6 +50,10 @@ button{
     height: 250px;
     width: auto;
 }
+#spriteLvl5{
+    height: 300px;
+    width:auto;
+}
 .dead{
     transform: rotate(270deg);
 }

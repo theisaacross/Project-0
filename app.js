@@ -61,41 +61,53 @@ class Tomagotchi{
     start(){
         let timer = 0
         const intervalID = setInterval(()=>{
-            timer++
-        // this.hungerLevel
-        // this.tirednessLevel
-        // this.boredomLevel 
-        this.makeHungry()
-        if (timer % 2 === 0){
-            this.makeBored()
-        }
-        if (timer % 3 === 0){
-            this.makeSleepy()
-        }
-        if (timer % 10 === 0){
-            this.ageSprite()
-        }
-        if (this.hungerLevel === 10 || this.tirednessLevel === 10 || this.boredomLevel === 10){
-            mascot.setAttribute('class', 'dead')
-            clearInterval(intervalID)
-            return alert('Game Over!')
-        }
-        },1000)
-        this.disableButtons()
-    }
+            timer++ 
+            this.makeHungry()
+            if (timer % 2 === 0){
+                this.makeBored()
+            }
+            if (timer % 3 === 0){
+                this.makeSleepy()
+            }
+            if (timer % 10 === 0){
+                this.ageSprite()
+            }
+            if (this.ageNum === 5){
+                mascot.removeAttribute('id')
+                mascot.setAttribute('id', 'spriteLvl5')
+            }
+            if (this.ageNum === 10){
+                clearInterval(intervalID)
+                this.disableButtons()
+                return alert("You win!")
+            }
+            if (this.hungerLevel === 10 || this.tirednessLevel === 10 || this.boredomLevel === 10){
+                mascot.setAttribute('class', 'dead')
+                clearInterval(intervalID)
+                this.disableButtons()
+                return alert('Game Over!')
+            }
+        },750)
+     }
 }
 const blitz = new Tomagotchi(inputName)
 
-const feedClick = hungerButton.addEventListener('click', () => blitz.feed())
-const sleepClick = sleepButton.addEventListener('click', () => blitz.sleep())
-const playClick = playButton.addEventListener('click',  () => blitz.play())
+const feedClick = hungerButton.addEventListener('click', () => {
+    if (blitz.hungerLevel > 0){
+        blitz.feed() 
+    }
+})
+const sleepClick = sleepButton.addEventListener('click', () => {
+    if(blitz.tirednessLevel > 0){
+        blitz.sleep()
+    }
+})
+const playClick = playButton.addEventListener('click',  () => {
+    if (blitz.boredomLevel > 0){
+        blitz.play()
+    }
+})
 
 blitz.start()
-document.querySelector("#feed").disabled = true;
-document.querySelector("#sleep").disabled = true;
-document.querySelector("#play").disabled = true;
 
-//make the sprite move randomly or when you click a button
-// can't go above 10 and below 0
-// dead animation
-// get bigger by age
+// make the sprite move
