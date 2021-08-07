@@ -4,7 +4,8 @@ const boredom = document.querySelector('#boredom')
 const age = document.querySelector('#age')
 const mascot = document.querySelector('#sprite')
 const inputName = prompt("Rename the Seahawks Mascot")
-mascot.innerText = inputName
+const nameTag = document.querySelector('#header-h1')
+nameTag.innerHTML = inputName
 const screen = document.querySelector('#sprite-div')
 
 const hungerButton = document.querySelector('#feed')
@@ -41,7 +42,7 @@ class Tomagotchi{
         this.tirednessLevel++
         tiredness.innerText = `Tiredness: ${this.tirednessLevel}/10`
     }
-    getBored(){
+    makeBored(){
         this.boredomLevel++
         boredom.innerText = `Boredom: ${this.boredomLevel}/10`
     }
@@ -52,16 +53,47 @@ class Tomagotchi{
         this.tirednessLevel++
         this.boredomLevel++
     }
+    disableButtons(){
+        document.querySelector("#feed").disabled = true;
+        document.querySelector("#sleep").disabled = true;
+        document.querySelector("#play").disabled = true;
+    }
+    start(){
+        let timer = 0
+        const intervalID = setInterval(()=>{
+            timer++
+        // this.hungerLevel
+        // this.tirednessLevel
+        // this.boredomLevel 
+        this.makeHungry()
+        if (timer % 2 === 0){
+            this.makeBored()
+        }
+        if (timer % 3 === 0){
+            this.makeSleepy()
+        }
+        if (timer % 10 === 0){
+            this.ageSprite()
+        }
+        if (this.hungerLevel === 10 || this.tirednessLevel === 10 || this.boredomLevel === 10){
+            mascot.setAttribute('class', 'dead')
+            clearInterval(intervalID)
+            return alert('Game Over!')
+        }
+        },1000)
+        this.disableButtons()
+    }
 }
 const blitz = new Tomagotchi(inputName)
 
 const feedClick = hungerButton.addEventListener('click', () => blitz.feed())
 const sleepClick = sleepButton.addEventListener('click', () => blitz.sleep())
 const playClick = playButton.addEventListener('click',  () => blitz.play())
-const timerId = setInterval(() => blitz.count(),1000);
 
-// blitz.start()
-
+blitz.start()
+document.querySelector("#feed").disabled = true;
+document.querySelector("#sleep").disabled = true;
+document.querySelector("#play").disabled = true;
 
 //make the sprite move randomly or when you click a button
 // can't go above 10 and below 0
