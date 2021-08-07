@@ -61,6 +61,17 @@ class Tomagotchi{
     start(){
         let timer = 0
         const intervalID = setInterval(()=>{
+            const position = Math.floor(Math.random() * 3)
+            if (position === 0){
+                mascot.removeAttribute('class')
+                mascot.setAttribute('class', 'left')
+            }else if ( position === 1){
+                mascot.removeAttribute('class')
+                mascot.setAttribute('class', 'middle')
+            }else{
+                mascot.removeAttribute('class')
+                mascot.setAttribute('class', 'right')
+            }
             timer++ 
             this.makeHungry()
             if (timer % 2 === 0){
@@ -109,5 +120,3 @@ const playClick = playButton.addEventListener('click',  () => {
 })
 
 blitz.start()
-
-// make the sprite move

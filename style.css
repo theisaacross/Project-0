@@ -68,4 +68,13 @@ button{
 .night-time{
     filter: brightness(50%);
 }
+.left{
+    margin-left: 50px;
+}
+.middle{
+    margin-left: 150px;
+}
+.right{
+    margin-left: 300px;
+}
 
